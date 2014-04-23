@@ -1,0 +1,29 @@
+#include<stdio.h>
+using namespace std;
+FILE *f,*g;
+
+int n,m;
+
+double expo(double r, int n){
+
+    if (n == 0) return 1;
+    else{
+        double t=expo(r,n/2);
+        if (n % 2) return t*t*r;
+        else return t*t;
+    }
+}
+
+void read(void){
+    f=fopen("kidsprizes.in","r");
+    g=fopen("kidsprizes.out","w");
+
+    fscanf(f,"%d%d",&n,&m);
+}
+
+int main(void){
+
+    read();
+    fprintf(g,"%.12lf",(double)n*(1-expo((double)(n-1)/n,m)));
+    return 0;
+}
